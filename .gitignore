@@ -1,0 +1,14 @@
+node_modules
+dist/**
+coverage
+data
+.DS_Store
+.vscode
+.scannerwork*
+package.json-e
+.migrate
+.env
+.clinic
+blockchain/build/**
+artifacts
+.deps
