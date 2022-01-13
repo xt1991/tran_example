@@ -50,7 +50,7 @@ describe('user.repository', () => {
 
   describe('get', () => {
     it('should get the resource with conditions', async () => {
-      const newUser = await UserModel.create(userData);
+      await UserModel.create(userData);
       const response = await userRepository.get();
       expect(response[0]).toBeDefined();
     });
