@@ -11,6 +11,7 @@ import { DefaultEventsMap } from 'socket.io/dist/typed-events';
 import config from './config';
 import logger from './logger';
 import userController from './users/controller';
+import postController from './posts/controller';
 
 //Set up default mongoose connection
 const mongoDB = config.mongoUri;
@@ -56,8 +57,10 @@ const onConnection = (
 };
 
 app.get('/ping', (_req, res) => res.send('pong'));
+
 //Rest api router
 app.use('/users', userController);
+app.use('/posts', postController);
 
 //Socket.io router
 io.on('connection', onConnection);
