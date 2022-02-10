@@ -15,7 +15,8 @@ const postSchema: Schema<PostDocument> = new Schema(
       required: true
     },
     author: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: 'Users',
       required: true
     },
     content: {
