@@ -1,5 +1,7 @@
 import express from 'express';
 import { userService } from './service';
+const Joi = require('joi');
+
 const userController = express.Router();
 
 userController.get(
@@ -28,7 +30,18 @@ userController.get(
 userController.post(
   '/',
   async (req: express.Request, res: express.Response) => {
+    const schema = Joi.object({
+      fullName: Joi.string()
+        .min(3)
+        .max(30)
+        .required(),
+      email: Joi.string()
+        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+        .required()
+    }).with('fullName', 'email');
+
     try {
+      await schema.validateAsync(req.body);
       const result = await userService.create(req.body);
       return res.json(result);
     } catch (e) {
