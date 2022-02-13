@@ -1,19 +1,19 @@
 import { AppError } from '../common/error/AppError';
 import { ERROR_CODE } from '../common/errors';
-import logger from '../logger';
+// import logger from '../logger';
 import { IUser } from './interface';
 import { UserDocument } from './model';
 import userRepository from './repository';
 
 export class UserService {
-  public async create(data: IUser): Promise<UserDocument> {
-    try {
-      return await userRepository.create(data);
-    } catch (error) {
-      logger.error(JSON.stringify(error));
-      throw new AppError(ERROR_CODE.INVALID_REQUEST, error as any);
-    }
-  }
+  // public async create(data: IUser): Promise<UserDocument> {
+  //   try {
+  //     return await userRepository.create(data);
+  //   } catch (error) {
+  //     logger.error(JSON.stringify(error));
+  //     throw new AppError(ERROR_CODE.INVALID_REQUEST, error as any);
+  //   }
+  // }
 
   public async get(): Promise<UserDocument[]> {
     return userRepository.get();

@@ -48,6 +48,14 @@ describe('user.repository', () => {
     });
   });
 
+  describe('getByEmail', () => {
+    it('should get the first resource with conditions', async () => {
+      const newUser = await UserModel.create(userData);
+      const response = await userRepository.getByEmail(newUser.email);
+      expect(response).toBeDefined();
+    });
+  });
+
   describe('get', () => {
     it('should get the resource with conditions', async () => {
       await UserModel.create(userData);

@@ -16,6 +16,10 @@ const userSchema: Schema<UserDocument> = new Schema(
       unique: true,
       required: true
     },
+    pass: {
+      type: String,
+      required: true
+    },
     dob: {
       type: String
     },

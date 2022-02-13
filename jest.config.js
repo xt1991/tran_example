@@ -31,5 +31,7 @@ module.exports = {
     '!src/common/**',
     '!src/socket.ts',
     '!src/config.ts',
+    '!src/jwt.ts',
+    '!src/passport.ts',
   ]
 };

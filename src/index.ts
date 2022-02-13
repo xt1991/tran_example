@@ -10,6 +10,10 @@ import { DefaultEventsMap } from 'socket.io/dist/typed-events';
 // import battleHandler from './battles/handler';
 import config from './config';
 import logger from './logger';
+
+import passport from './passport';
+
+import authController from './auth/controller';
 import userController from './users/controller';
 import postController from './posts/controller';
 
@@ -33,6 +37,9 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+
+app.use(passport.initialize());
+
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   /* options */
@@ -59,8 +66,17 @@ const onConnection = (
 app.get('/ping', (_req, res) => res.send('pong'));
 
 //Rest api router
-app.use('/users', userController);
-app.use('/posts', postController);
+app.use('/auth', authController);
+app.use(
+  '/users',
+  passport.authenticate('jwt', { session: false }),
+  userController
+);
+app.use(
+  '/posts',
+  passport.authenticate('jwt', { session: false }),
+  postController
+);
 
 //Socket.io router
 io.on('connection', onConnection);

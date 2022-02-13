@@ -7,6 +7,7 @@ export enum userStatus {
 export interface IUser extends Partial<IMongoBase> {
   fullName: string;
   email: string;
+  pass: string;
   dob: string;
   fb?: string;
   tw?: string;

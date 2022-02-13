@@ -61,10 +61,10 @@ describe('user.repository', () => {
       const res = await PostModel.create(postData);
 
       const updated = await postRepository.findOneAndUpdate(res._id, {
-        fb: 'fb'
+        content: 'content'
       });
       expect(updated).toBeDefined();
-      expect((updated as PostDocument).fb).toEqual('fb');
+      expect((updated as PostDocument).content).toEqual('content');
     });
   });
 });

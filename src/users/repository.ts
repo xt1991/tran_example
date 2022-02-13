@@ -11,6 +11,9 @@ const get = async (): Promise<UserDocument[]> => {
 const getById = async (id: string): Promise<UserDocument | null> => {
   return UserModel.findById(id).exec();
 };
+const getByEmail = async (email: string): Promise<UserDocument | null> => {
+  return UserModel.findOne({ email: email }).exec();
+};
 
 const findOneAndUpdate = async (
   id: string,
@@ -28,6 +31,7 @@ const userRepository = {
   create,
   get,
   getById,
+  getByEmail,
   findOneAndUpdate
 };
 
