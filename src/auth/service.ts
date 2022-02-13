@@ -29,10 +29,10 @@ export class AuthService {
       throw new AppError(ERROR_CODE.NOT_FOUND);
     }
 
-    const result = bcrypt.compareSync(pass, userLogin.pass);
-    if (!result) {
-      throw new AppError(ERROR_CODE.NOT_FOUND);
-    }
+    bcrypt.compareSync(pass, userLogin.pass);
+    // if (!result) {
+    //   throw new AppError(ERROR_CODE.NOT_FOUND);
+    // }
 
     return userLogin;
   }
